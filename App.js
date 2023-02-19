@@ -144,7 +144,7 @@ export default function App() {
                 {() => <ShipsScreen ></ShipsScreen>}
               </Drawer.Screen>
               <Drawer.Screen name="Logout">
-                {() => <LogoutScreen></LogoutScreen>}
+                {() => <LogoutScreen onLogout={storageToken}></LogoutScreen>}
               </Drawer.Screen>
             </>
           )}

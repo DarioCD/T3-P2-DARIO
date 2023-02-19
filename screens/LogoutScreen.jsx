@@ -1,17 +1,10 @@
-import React, {useEffect} from 'react'
-import { Image, View, Text, StyleSheet,Button  } from 'react-native'
-import Toast from 'react-native-root-toast'
+import {useEffect} from 'react'
 
 
-const LogoutScreen = () => {
-    return(
-        <View>
-            <Text>LogoutScreen</Text>
-        </View>
-    )
+const LogoutScreen = ({onLogout}) => {
+    useEffect(() => {
+        onLogout("")
+    }, [])
 }
-const styles = StyleSheet.create({
-    
-})
 
 export default LogoutScreen
