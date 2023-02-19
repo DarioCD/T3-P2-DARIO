@@ -3,16 +3,16 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import { RootSiblingParent } from "react-native-root-siblings";
 
+import HomeScreen from "./screens/HomeScreen";
+import ShipsScreen from "./screens/ShipsScreen";
+import LogoutScreen from "./screens/LogoutScreen";
 import LoginScreen from "./screens/LoginScreen";
 import { useEffect, useState } from "react";
 
 import * as SecureStorege from "expo-secure-store";
 import OptionScreen from "./screens/OptionScreen";
 import RegisterScreen from "./screens/RegisterScreen";
-import HomeScreen from "./screens/HomeScreen";
 import LoanScreen from "./screens/LoanScreen";
-import ShipsScreen from "./screens/ShipsScreen";
-import LogoutScreen from "./screens/LogoutScreen";
 
 const STORAGE_TOKEN_KEY = "mytoken";
 
@@ -99,11 +99,39 @@ export default function App() {
     };
     createUser();
   };
+  
+  const takeOutLoan = (token) => {
+    const getLoan = async () => {
+      try {
+        const response = await fetch(
+          `https://api.spacetraders.io/my/loans?token=${token}&type=STARTUP`,
+          {
+            method: "POST",
+          }
+        );
+        const data = await response.json();
+        if (data.error) {
+          setWentWrong(true);
+          setTimeout(() => {
+            setWentWrong(false);
+          }, 2000);
+        }else{
+          userData.credits += data.credits;
+          setUserData(userData)
+        }
+        return data;
+      } catch (error) {
+        console.error(error);
+        return {};
+      }
+    };
+    getLoan();
+  };
 
   return (
     <RootSiblingParent>
       <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home" style={styles.container}>
+        <Drawer.Navigator initialRouteName="Home" style={styles.container}>
           {userToken === "" ? (
             <>
               <Drawer.Screen name="Login">
@@ -137,6 +165,10 @@ export default function App() {
               <Drawer.Screen name="Loans">
                 {() => (
                   <LoanScreen
+                    userToken={userToken}
+                    takeOutLoan={takeOutLoan}
+                    wentWrong={wentWrong}
+                    userData={userData}
                   ></LoanScreen>
                 )}
               </Drawer.Screen>
