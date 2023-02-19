@@ -99,10 +99,6 @@ export default function App() {
     <RootSiblingParent>
       <NavigationContainer>
         <Drawer.Navigator initialRouteName="Options" style={styles.container}>
-          <Drawer.Screen
-            name="Options"
-            component={OptionScreen}
-          ></Drawer.Screen>
           <Drawer.Screen name="Login">
             {() => (
               <LoginScreen
