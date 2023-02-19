@@ -141,7 +141,7 @@ export default function App() {
                 )}
               </Drawer.Screen>
               <Drawer.Screen name="Ships">
-                {() => <ShipsScreen ></ShipsScreen>}
+                {() => <ShipsScreen userToken={userToken}></ShipsScreen>}
               </Drawer.Screen>
               <Drawer.Screen name="Logout">
                 {() => <LogoutScreen onLogout={storageToken}></LogoutScreen>}
