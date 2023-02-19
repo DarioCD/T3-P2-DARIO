@@ -9,6 +9,10 @@ import { useEffect, useState } from "react";
 import * as SecureStorege from "expo-secure-store";
 import OptionScreen from "./screens/OptionScreen";
 import RegisterScreen from "./screens/RegisterScreen";
+import HomeScreen from "./screens/HomeScreen";
+import LoanScreen from "./screens/LoanScreen";
+import ShipsScreen from "./screens/ShipsScreen";
+import LogoutScreen from "./screens/LogoutScreen";
 
 const STORAGE_TOKEN_KEY = "mytoken";
 
@@ -32,6 +36,7 @@ const getValueFor = async (key) => {
 export default function App() {
   const [userToken, setUserToken] = useState("");
   const [wentWrong, setWentWrong] = useState(false);
+  const [userData, setUserData] = useState({});
 
   useEffect(() => {
     const retriveStorageToken = async () => {
@@ -98,23 +103,51 @@ export default function App() {
   return (
     <RootSiblingParent>
       <NavigationContainer>
-        <Drawer.Navigator initialRouteName="Options" style={styles.container}>
-          <Drawer.Screen name="Login">
-            {() => (
-              <LoginScreen
-                onLogin={storageToken}
-                wentWrong={wentWrong}
-              ></LoginScreen>
-            )}
-          </Drawer.Screen>
-          <Drawer.Screen name="Register">
-            {() => (
-              <RegisterScreen
-                onRegister={createToken}
-                wentWrong={wentWrong}
-              ></RegisterScreen>
-            )}
-          </Drawer.Screen>
+      <Drawer.Navigator initialRouteName="Home" style={styles.container}>
+          {userToken === "" ? (
+            <>
+              <Drawer.Screen name="Login">
+                {() => (
+                  <LoginScreen
+                    onLogin={storageToken}
+                    wentWrong={wentWrong}
+                  ></LoginScreen>
+                )}
+              </Drawer.Screen>
+              <Drawer.Screen name="Register">
+                {() => (
+                  <RegisterScreen
+                    onRegister={createToken}
+                    wentWrong={wentWrong}
+                  ></RegisterScreen>
+                )}
+              </Drawer.Screen>
+            </>
+          ) : (
+            <>
+              <Drawer.Screen name="Home">
+                {() => (
+                  <HomeScreen
+                    userToken={userToken}
+                    userData={userData}
+                    setUserData={setUserData}
+                  ></HomeScreen>
+                )}
+              </Drawer.Screen>
+              <Drawer.Screen name="Loans">
+                {() => (
+                  <LoanScreen
+                  ></LoanScreen>
+                )}
+              </Drawer.Screen>
+              <Drawer.Screen name="Ships">
+                {() => <ShipsScreen ></ShipsScreen>}
+              </Drawer.Screen>
+              <Drawer.Screen name="Logout">
+                {() => <LogoutScreen></LogoutScreen>}
+              </Drawer.Screen>
+            </>
+          )}
         </Drawer.Navigator>
       </NavigationContainer>
     </RootSiblingParent>
