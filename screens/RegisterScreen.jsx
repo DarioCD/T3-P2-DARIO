@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Image, View, Text, StyleSheet, TextInput, Button, Pressable } from 'react-native'
 
 import Toast from 'react-native-root-toast'
 
 
-const RegisterScreen = ({onRegister, wentWrong}) => {
+const RegisterScreen = ({onRegister, wentWrong, setOption}) => {
     const [userName, setUserName] = useState('');
+    useEffect(() => {
+        setOption(false)
+    })
 
     const nameHandler = () => {
         if (userName !== '') {
@@ -30,8 +33,8 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         width: '100%',
-        justifyContent: "center"
-
+        justifyContent: "center",
+        backgroundColor: "#deebf7"
     },
     btnContainer: {
         display: "flex",

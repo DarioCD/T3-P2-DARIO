@@ -32,6 +32,7 @@ const getValueFor = async (key) => {
 export default function App() {
   const [userToken, setUserToken] = useState("");
   const [wentWrong, setWentWrong] = useState(false);
+  const [option, setOption] = useState(true)
 
   useEffect(() => {
     const retriveStorageToken = async () => {
@@ -99,11 +100,15 @@ export default function App() {
     <RootSiblingParent>
       <NavigationContainer>
         <Drawer.Navigator initialRouteName="Options" style={styles.container}>
+          {option && <Drawer.Screen name="Options">{() => (
+            <OptionScreen setOption={setOption}></OptionScreen>
+          )}</Drawer.Screen>}
           <Drawer.Screen name="Login">
             {() => (
               <LoginScreen
                 onLogin={storageToken}
                 wentWrong={wentWrong}
+                setOption={setOption}
               ></LoginScreen>
             )}
           </Drawer.Screen>
@@ -112,6 +117,7 @@ export default function App() {
               <RegisterScreen
                 onRegister={createToken}
                 wentWrong={wentWrong}
+                setOption={setOption}
               ></RegisterScreen>
             )}
           </Drawer.Screen>

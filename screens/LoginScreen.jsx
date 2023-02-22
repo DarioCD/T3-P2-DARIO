@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Image, View, Text, StyleSheet, TextInput, Button, Pressable } from 'react-native'
 
 import Toast from 'react-native-root-toast'
 
 
-const LoginScreen = ({ onLogin, wentWrong }) => {
+const LoginScreen = ({ onLogin, wentWrong, setOption }) => {
     const [userToken, setUserToken] = useState('');
+    useEffect(() => {
+        setOption(false)
+    })
 
     const tokenHandler = () => {
         if (userToken !== '') {
@@ -30,8 +33,8 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         width: '100%',
-        justifyContent: "center"
-
+        justifyContent: "center",
+        backgroundColor: "#deebf7"
     },
     btnContainer: {
         display: "flex",
