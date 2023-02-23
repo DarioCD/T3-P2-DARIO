@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { Image, View, Text, StyleSheet, TextInput, Button, Pressable } from 'react-native'
+import { Image, View, Text, StyleSheet, TextInput, Button, Pressable, ImageBackground } from 'react-native'
 
 import Toast from 'react-native-root-toast'
 
+const localImg = require("../assets/SpaceWallaper.jpg")
 
-const RegisterScreen = ({onRegister, wentWrong, setOption}) => {
+
+const RegisterScreen = ({ onRegister, wentWrong, setOption }) => {
     const [userName, setUserName] = useState('');
     useEffect(() => {
         setOption(false)
@@ -19,46 +21,38 @@ const RegisterScreen = ({onRegister, wentWrong, setOption}) => {
             })
         }
     }
-  return (
-    <View style={styles.container}>
-            <TextInput onChangeText={setUserName} value={userName} placeholder={"Introduce el nombre"} style={wentWrong ? styles.inputStyleWrong : styles.inputStyle}></TextInput>
-            {wentWrong && <Text style={{ marginBottom: 10 }}>Select another name please</Text>}
-            <Button title='Register' onPress={nameHandler}></Button>
-        </View>
-  )
+    return (
+        <ImageBackground source={localImg} resizeMode="cover" style={styles.image}>
+            <TextInput onChangeText={setUserName} value={userName} placeholder={"Introduce el nombre"} style={styles.inputStyle}></TextInput>
+            {wentWrong && window.alert("Select another name please")}
+            <Pressable onPress={nameHandler} style={styles.register}><Text style={{ fontSize: 30, color: "white" }}>Register</Text></Pressable>
+        </ImageBackground>
+    )
 }
 
 const styles = StyleSheet.create({
-    container: {
+    image: {
         flex: 1,
         alignItems: 'center',
         width: '100%',
         justifyContent: "center",
-        backgroundColor: "#deebf7"
-    },
-    btnContainer: {
-        display: "flex",
-        flexDirection: "row"
-    },
-    btnlogin: {
-        borderRadius: 1,
-        padding: 20,
-        paddingHorizontal: 40,
-        backgroundColor: "yellow"
     },
     inputStyle: {
+        width: "80%",
+        height: 30,
         borderColor: 'black',
+        textAlign: "center",
         borderWidth: 2,
-        borderRadius: 1,
+        borderRadius: 10,
         padding: 5,
-        marginBottom: 10
+        marginBottom: 10,
+        backgroundColor: "white",
     },
-    inputStyleWrong: {
-        borderColor: 'red',
-        borderWidth: 2,
-        borderRadius: 1,
-        padding: 5,
-        marginBottom: 10
+    register: {
+        paddingVertical: 20,
+        paddingHorizontal: "10%",
+        borderRadius: 5,
+        backgroundColor: "black"
     },
 })
 

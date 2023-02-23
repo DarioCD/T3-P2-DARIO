@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { Image, View, Text, StyleSheet, TextInput, Button, Pressable } from 'react-native'
+import { Image, View, Text, StyleSheet, TextInput, Button, Pressable, ImageBackground } from 'react-native'
 
 import Toast from 'react-native-root-toast'
+
+const localImg = require("../assets/SpaceWallaper.jpg")
 
 
 const LoginScreen = ({ onLogin, wentWrong, setOption }) => {
@@ -20,45 +22,37 @@ const LoginScreen = ({ onLogin, wentWrong, setOption }) => {
         }
     }
     return (
-        <View style={styles.container}>
-            <TextInput onChangeText={setUserToken} value={userToken} placeholder={"Introduce the token"} style={wentWrong ? styles.inputStyleWrong : styles.inputStyle}></TextInput>
-            {wentWrong && <Text style={{ marginBottom: 10 }}>Invalid token hdp</Text>}
-            <Button title='Login' onPress={tokenHandler}></Button>
-        </View>
+        <ImageBackground source={localImg} resizeMode="cover" style={styles.image}>
+            <TextInput onChangeText={setUserToken} value={userToken} placeholder={"Introduce the token"} style={styles.inputStyle}></TextInput>
+            {wentWrong && window.alert("Inválid token")}
+            <Pressable onPress={tokenHandler } style={styles.login}><Text style={{ fontSize: 30, color: "white" }}>Login</Text></Pressable>
+        </ImageBackground>
     )
 }
 
 const styles = StyleSheet.create({
-    container: {
+    inputStyle: {
+        width: "80%",
+        height: 30,
+        borderColor: 'black',
+        textAlign: "center",
+        borderWidth: 2,
+        borderRadius: 10,
+        padding: 5,
+        marginBottom: 10,
+        backgroundColor: "white",
+    },
+    image: {
         flex: 1,
         alignItems: 'center',
         width: '100%',
         justifyContent: "center",
-        backgroundColor: "#deebf7"
     },
-    btnContainer: {
-        display: "flex",
-        flexDirection: "row"
-    },
-    btnlogin: {
-        borderRadius: 1,
-        padding: 20,
-        paddingHorizontal: 40,
-        backgroundColor: "yellow"
-    },
-    inputStyle: {
-        borderColor: 'black',
-        borderWidth: 2,
-        borderRadius: 1,
-        padding: 5,
-        marginBottom: 10
-    },
-    inputStyleWrong: {
-        borderColor: 'red',
-        borderWidth: 2,
-        borderRadius: 1,
-        padding: 5,
-        marginBottom: 10
+    login: {
+        paddingVertical: 20,
+        paddingHorizontal: "10%",
+        borderRadius: 5,
+        backgroundColor: "black",
     },
 })
 

@@ -37,6 +37,7 @@ export default function App() {
   const [userToken, setUserToken] = useState("");
   const [wentWrong, setWentWrong] = useState(false);
   const [userData, setUserData] = useState({});
+  const [option, setOption] = useState(true)
 
   useEffect(() => {
     const retriveStorageToken = async () => {
@@ -134,11 +135,15 @@ export default function App() {
         <Drawer.Navigator initialRouteName="Home" style={styles.container}>
           {userToken === "" ? (
             <>
+            {option && <Drawer.Screen name="Options">{() => (
+              <OptionScreen setOption={setOption}></OptionScreen>
+            )}</Drawer.Screen>}
               <Drawer.Screen name="Login">
                 {() => (
                   <LoginScreen
                     onLogin={storageToken}
                     wentWrong={wentWrong}
+                    setOption={setOption}
                   ></LoginScreen>
                 )}
               </Drawer.Screen>
@@ -147,6 +152,7 @@ export default function App() {
                   <RegisterScreen
                     onRegister={createToken}
                     wentWrong={wentWrong}
+                    setOption={setOption}
                   ></RegisterScreen>
                 )}
               </Drawer.Screen>
@@ -169,6 +175,7 @@ export default function App() {
                     takeOutLoan={takeOutLoan}
                     wentWrong={wentWrong}
                     userData={userData}
+                    setUserData={setUserData}
                   ></LoanScreen>
                 )}
               </Drawer.Screen>
@@ -176,7 +183,7 @@ export default function App() {
                 {() => <ShipsScreen userToken={userToken}></ShipsScreen>}
               </Drawer.Screen>
               <Drawer.Screen name="Logout">
-                {() => <LogoutScreen onLogout={storageToken}></LogoutScreen>}
+                {() => <LogoutScreen onLogout={storageToken} setWentWrong={setWentWrong} setOption={setOption}></LogoutScreen>}
               </Drawer.Screen>
             </>
           )}

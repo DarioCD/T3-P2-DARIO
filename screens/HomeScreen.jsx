@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
-import { Image, View, Text, StyleSheet, Button } from 'react-native'
+import { Image, View, Text, StyleSheet, Button, ImageBackground } from 'react-native'
+
+const localImg = require("../assets/SpaceWallaper.jpg")
 
 const HomeScreen = ({ userToken, userData, setUserData }) => {
     useEffect(() => {
@@ -11,67 +13,95 @@ const HomeScreen = ({ userToken, userData, setUserData }) => {
     }, [userToken])
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.userName}>
-                <Image style={{ width: 50, height: 50 }}
+        <ImageBackground source={localImg} resizeMode="cover" style={styles.image}>
+            <View style={styles.userName}>
+                <Image style={styles.imgContainer}
                     source={require("../assets/myAvatar.png")} />
-                {userData.username}
-            </Text>
-            <Text style={styles.moneyContainer}>
-                {userData.credits} Crd
-            </Text>
-            <View style={styles.shipStructureContainer}>
-                <Text style={styles.itemsContainer}>
-                    <Image style={{ width: 35, height: 35 }}
-                        source={require("../assets/SpaceShip.png")} />
-                    {userData.shipCount}
-                </Text>
-                <Text style={styles.itemsContainer}>
-                    <Image style={{ width: 35, height: 35 }}
-                        source={require("../assets/structure.png")} />
-                        {userData.structureCount}
-                </Text>
+                <Text style={styles.textConatiner}>{userData.username}</Text>
             </View>
-        </View>
+            <View style={styles.moneyContainer}>
+                <Text style={styles.textConatiner}>{userData.credits} Credits</Text>
+            </View>
+            <View style={styles.shipStructureContainer}>
+                <View style={styles.itemsContainer}>
+                    <Image style={styles.imgContainer}
+                        source={require("../assets/SpaceShip.png")} />
+                    <Text style={styles.textConatiner}>{userData.shipCount} Ships</Text>
+                </View>
+            </View>
+            <View style={styles.shipStructureContainer}>
+                <View style={styles.itemsContainer}>
+                    <Image style={styles.imgContainer}
+                        source={require("../assets/Structure.png")} />
+                    <Text style={styles.textConatiner}>{userData.structureCount} Structures</Text>
+                </View>
+            </View>
+        </ImageBackground>
     )
 }
 
 const styles = StyleSheet.create({
-    container: {
+    image: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        justifyContent: "center",
         height: "100%",
     },
     userName: {
         padding: 20,
-        fontSize: 40,
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        backgroundColor: 'black',
+        marginBottom: 30,
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: '#fff',
     },
     moneyContainer: {
         display: 'flex',
         textAlign: 'center',
         padding: 30,
         width: "80%",
-        backgroundColor: '#d9f0a3',
-        borderRadius: 5,
-        borderColor: 'black',
+        backgroundColor: 'black',
+        color: "white",
+        borderRadius: 10,
         borderWidth: 1,
-        fontSize: 20,
+        borderColor: '#fff',
     },
     shipStructureContainer: {
         display: 'flex',
+        flexDirection: "column",
+        justifyContent: "center",
         alignItems: 'center',
-        marginTop: 10,
+        marginTop: 30,
         padding: 20,
         width: "80%",
-        backgroundColor: '#d9f0a3',
-        borderRadius: 5,
-        borderColor: 'black',
-        borderWidth: 1
+        backgroundColor: 'black',
+        borderWidth: 1,
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: '#fff',
     },
     itemsContainer: {
         fontSize: 20,
-        paddingBottom: 15
+        paddingBottom: 15,
+        display: 'flex',
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: 'center',
+    },
+    textConatiner: {
+        color: "white",
+        textAlign: "center",
+        fontSize: 30
+    },
+    imgContainer: {
+        display: "flex",
+        width: 70,
+        height: 70,
+        resizeMode: 'contain',
     }
 })
 

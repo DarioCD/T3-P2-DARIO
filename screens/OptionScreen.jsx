@@ -1,17 +1,47 @@
 import { useNavigation } from '@react-navigation/native'
 import React from 'react'
-import { Button, View } from 'react-native'
+import { Button, Pressable, View, Text, StyleSheet, ImageBackground } from 'react-native'
 
-const OptionScreen = ({setOption}) => {
+const localImg = require("../assets/SpaceWallaper.jpg")
+
+const OptionScreen = ({ setOption }) => {
   const navigation = useNavigation()
   return (
-    <View>
-        <Button title='Login'onPress={() => {navigation.navigate('Login'); setOption(false)}} >
-        </Button>
-        <Button title='Register' onPress={() => {navigation.navigate('Register'); setOption(false)}}>
-        </Button>
-    </View>
+      <ImageBackground source={localImg} resizeMode="cover" style={styles.image}>
+        <Pressable onPress={() => { navigation.navigate('Login'); setOption(false) }} style={styles.login}><Text style={{ fontSize: 30, color: "white" }}>Login</Text></Pressable>
+        <Pressable onPress={() => { navigation.navigate('Register'); setOption(false) }} style={styles.register}><Text style={{ fontSize: 30, color: "white" }}>Register</Text></Pressable>
+      </ImageBackground>
   )
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    width: '100%',
+    justifyContent: 'space-evenly',
+    paddingBottom: "30%"
+  },
+  login: {
+    paddingVertical: 20,
+    paddingHorizontal: "10%",
+    borderRadius: 5,
+    backgroundColor: "black",
+  },
+  register: {
+    paddingVertical: 20,
+    paddingHorizontal: "10%",
+    borderRadius: 5,
+    backgroundColor: "black"
+  },
+  image: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    width: '100%',
+    justifyContent: 'space-evenly',
+    paddingBottom: "30%"
+  },
+})
 
 export default OptionScreen
