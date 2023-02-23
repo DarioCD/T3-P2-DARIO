@@ -136,7 +136,7 @@ export default function App() {
           {userToken === "" ? (
             <>
             {option && <Drawer.Screen name="Options">{() => (
-              <OptionScreen setOption={setOption}></OptionScreen>
+              <OptionScreen setOption={setOption} setWentWrong={setWentWrong}></OptionScreen>
             )}</Drawer.Screen>}
               <Drawer.Screen name="Login">
                 {() => (

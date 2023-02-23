@@ -4,12 +4,12 @@ import { Button, Pressable, View, Text, StyleSheet, ImageBackground } from 'reac
 
 const localImg = require("../assets/SpaceWallaper.jpg")
 
-const OptionScreen = ({ setOption }) => {
+const OptionScreen = ({ setOption, setWentWrong }) => {
   const navigation = useNavigation()
   return (
       <ImageBackground source={localImg} resizeMode="cover" style={styles.image}>
-        <Pressable onPress={() => { navigation.navigate('Login'); setOption(false) }} style={styles.login}><Text style={{ fontSize: 30, color: "white" }}>Login</Text></Pressable>
-        <Pressable onPress={() => { navigation.navigate('Register'); setOption(false) }} style={styles.register}><Text style={{ fontSize: 30, color: "white" }}>Register</Text></Pressable>
+        <Pressable onPress={() => { navigation.navigate('Login'); setOption(false); setWentWrong(false) }} style={styles.login}><Text style={{ fontSize: 30, color: "white" }}>Login</Text></Pressable>
+        <Pressable onPress={() => { navigation.navigate('Register'); setOption(false); setWentWrong(false) }} style={styles.register}><Text style={{ fontSize: 30, color: "white" }}>Register</Text></Pressable>
       </ImageBackground>
   )
 }
