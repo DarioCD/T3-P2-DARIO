@@ -1,16 +1,23 @@
-import { useEffect, useState } from 'react'
-import { Image, View, Text, StyleSheet, Button, ImageBackground } from 'react-native'
+import { useFocusEffect } from '@react-navigation/native'
+import { useCallback } from 'react'
+import { Image, View, Text, StyleSheet, ImageBackground } from 'react-native'
 
 const localImg = require("../assets/SpaceWallaper.jpg")
 
 const HomeScreen = ({ userToken, userData, setUserData }) => {
-    useEffect(() => {
-        const retriveUserData = async () => {
-            const data = await fetch(`https://api.spacetraders.io/my/account?token=${userToken}`)
-            data.json().then((data) => setUserData(data.user))
-        };
-        retriveUserData()
-    }, [userToken])
+    useFocusEffect(
+        useCallback(() => {
+            console.log(userData);
+            fetch(`https://api.spacetraders.io/my/account?token=${userToken}`)
+                .then((res) => res.json())
+                .then((data) => {
+                    if (data.user) {
+                        setUserData(data.user);
+                    }
+                })
+                .catch((err) => console.log(err));
+        }, [userToken])
+    );
 
     return (
         <ImageBackground source={localImg} resizeMode="cover" style={styles.image}>

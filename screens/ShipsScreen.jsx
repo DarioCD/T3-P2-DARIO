@@ -19,47 +19,47 @@ const ShipsScreen = ({ userToken }) => {
     return (
         <ImageBackground source={localImg} resizeMode="cover" style={styles.image}>
             <ScrollView>
-                    {ships.length != 0 ? ships.map((ship, index) => {
-                        if (ship.type === "JW-MK-I") {
-                            imgName = require(`../assets/nave1.png`)
-                        } else if (ship.type === "JW-MK-II") {
-                            imgName = require(`../assets/nave2.png`)
-                        } else if (ship.type === "GR-MK-I") {
-                            imgName = require(`../assets/nave3.png`)
-                        } else if (ship.type === "ZA-MK-II") {
-                            imgName = require(`../assets/nave4.png`)
-                        } else if (ship.type === "ZA-MK-III") {
-                            imgName = require(`../assets/nave5.png`)
-                        } else if (ship.type === "EM-MK-I") {
-                            imgName = require(`../assets/nave6.png`)
-                        } else if (ship.type === "HM-MK-I") {
-                            imgName = require(`../assets/nave7.png`)
-                        } else if (ship.type === "GR-MK-II") {
-                            imgName = require(`../assets/nave8.png`)
-                        } else if (ship.type === "GR-MK-III") {
-                            imgName = require(`../assets/nave9.png`)
-                        } else if (ship.type === "HM-MK-III") {
-                            imgName = require(`../assets/nave10.png`)
-                        } else if (ship.type === "TD-MK-I") {
-                            imgName = require(`../assets/nave11.png`)
-                        } else {
-                            imgName = require(`../assets/nave12.png`)
-                        }
-                        return (
-                            <View key={index} style={styles.containerShips}>
-                                <View>
-                                    <Image style={styles.imgContainer}
-                                        source={imgName} />
-                                </View>
-                                <View style={{ marginLeft: 20 }}>
-                                    <Text style={styles.text}>Type : {ship.type}</Text>
-                                    <Text style={styles.text}>Speed : {ship.speed}</Text>
-                                    <Text style={styles.text}>Weapons : {ship.weapons}</Text>
-                                    <Text style={styles.text}>Cargo : {ship.maxCargo}</Text>
-                                </View>
+                {ships.length != 0 ? ships.map((ship, index) => {
+                    if (ship.type === "JW-MK-I") {
+                        imgName = require(`../assets/nave1.png`)
+                    } else if (ship.type === "JW-MK-II") {
+                        imgName = require(`../assets/nave2.png`)
+                    } else if (ship.type === "GR-MK-I") {
+                        imgName = require(`../assets/nave3.png`)
+                    } else if (ship.type === "ZA-MK-II") {
+                        imgName = require(`../assets/nave4.png`)
+                    } else if (ship.type === "ZA-MK-III") {
+                        imgName = require(`../assets/nave5.png`)
+                    } else if (ship.type === "EM-MK-I") {
+                        imgName = require(`../assets/nave6.png`)
+                    } else if (ship.type === "HM-MK-I") {
+                        imgName = require(`../assets/nave7.png`)
+                    } else if (ship.type === "GR-MK-II") {
+                        imgName = require(`../assets/nave8.png`)
+                    } else if (ship.type === "GR-MK-III") {
+                        imgName = require(`../assets/nave9.png`)
+                    } else if (ship.type === "HM-MK-III") {
+                        imgName = require(`../assets/nave10.png`)
+                    } else if (ship.type === "TD-MK-I") {
+                        imgName = require(`../assets/nave11.png`)
+                    } else {
+                        imgName = require(`../assets/nave12.png`)
+                    }
+                    return (
+                        <View key={index} style={styles.containerShips}>
+                            <View>
+                                <Image style={styles.imgContainer}
+                                    source={imgName} />
                             </View>
-                        )
-                    }) : <></>}
+                            <View style={{ marginLeft: 20 }}>
+                                <Text style={styles.text}>Type : {ship.type}</Text>
+                                <Text style={styles.text}>Speed : {ship.speed}</Text>
+                                <Text style={styles.text}>Weapons : {ship.weapons}</Text>
+                                <Text style={styles.text}>Cargo : {ship.maxCargo}</Text>
+                            </View>
+                        </View>
+                    )
+                }) : <></>}
             </ScrollView>
         </ImageBackground>
     )
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
         padding: 20,
         backgroundColor: 'black',
         borderRadius: 5,
-        borderColor: 'black',
+        borderColor: 'white',
         borderWidth: 1
     },
     imgContainer: {
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
         height: 150,
         resizeMode: 'contain',
     },
-    text:{
+    text: {
         color: "white",
         fontSize: 20
     }

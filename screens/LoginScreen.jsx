@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Image, View, Text, StyleSheet, TextInput, Button, Pressable, ImageBackground } from 'react-native'
+import {Text, StyleSheet, TextInput, Pressable, ImageBackground } from 'react-native'
 
 import Toast from 'react-native-root-toast'
 
@@ -25,7 +25,7 @@ const LoginScreen = ({ onLogin, wentWrong, setOption }) => {
         <ImageBackground source={localImg} resizeMode="cover" style={styles.image}>
             <TextInput onChangeText={setUserToken} value={userToken} placeholder={"Introduce the token"} style={styles.inputStyle}></TextInput>
             {wentWrong && window.alert("Inválid token")}
-            <Pressable onPress={tokenHandler } style={styles.login}><Text style={{ fontSize: 30, color: "white" }}>Login</Text></Pressable>
+            <Pressable onPress={tokenHandler} style={styles.login}><Text style={{ fontSize: 30, color: "white" }}>Login</Text></Pressable>
         </ImageBackground>
     )
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Image, View, Text, StyleSheet, TextInput, Button, Pressable, ImageBackground } from 'react-native'
+import {Text, StyleSheet, TextInput, Pressable, ImageBackground } from 'react-native'
 
 import Toast from 'react-native-root-toast'
 

@@ -37,7 +37,7 @@ export default function App() {
   const [userToken, setUserToken] = useState("");
   const [wentWrong, setWentWrong] = useState(false);
   const [userData, setUserData] = useState({});
-  const [option, setOption] = useState(true)
+  const [option, setOption] = useState(true);
 
   useEffect(() => {
     const retriveStorageToken = async () => {
@@ -100,7 +100,7 @@ export default function App() {
     };
     createUser();
   };
-  
+
   const takeOutLoan = (token) => {
     const getLoan = async () => {
       try {
@@ -116,9 +116,8 @@ export default function App() {
           setTimeout(() => {
             setWentWrong(false);
           }, 2000);
-        }else{
+        } else {
           userData.credits += data.credits;
-          setUserData(userData)
         }
         return data;
       } catch (error) {
@@ -132,12 +131,19 @@ export default function App() {
   return (
     <RootSiblingParent>
       <NavigationContainer>
-        <Drawer.Navigator initialRouteName="Home" style={styles.container}>
+        <Drawer.Navigator>
           {userToken === "" ? (
             <>
-            {option && <Drawer.Screen name="Options">{() => (
-              <OptionScreen setOption={setOption} setWentWrong={setWentWrong}></OptionScreen>
-            )}</Drawer.Screen>}
+              {option && (
+                <Drawer.Screen name="Options">
+                  {() => (
+                    <OptionScreen
+                      setOption={setOption}
+                      setWentWrong={setWentWrong}
+                    ></OptionScreen>
+                  )}
+                </Drawer.Screen>
+              )}
               <Drawer.Screen name="Login">
                 {() => (
                   <LoginScreen
@@ -174,8 +180,6 @@ export default function App() {
                     userToken={userToken}
                     takeOutLoan={takeOutLoan}
                     wentWrong={wentWrong}
-                    userData={userData}
-                    setUserData={setUserData}
                   ></LoanScreen>
                 )}
               </Drawer.Screen>
@@ -183,7 +187,13 @@ export default function App() {
                 {() => <ShipsScreen userToken={userToken}></ShipsScreen>}
               </Drawer.Screen>
               <Drawer.Screen name="Logout">
-                {() => <LogoutScreen onLogout={storageToken} setWentWrong={setWentWrong} setOption={setOption}></LogoutScreen>}
+                {() => (
+                  <LogoutScreen
+                    onLogout={storageToken}
+                    setWentWrong={setWentWrong}
+                    setOption={setOption}
+                  ></LogoutScreen>
+                )}
               </Drawer.Screen>
             </>
           )}

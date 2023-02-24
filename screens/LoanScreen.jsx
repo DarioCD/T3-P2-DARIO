@@ -1,15 +1,15 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useEffect, useState } from 'react'
-import { Text, View, StyleSheet, Button, ImageBackground } from 'react-native'
+import { Text, View, StyleSheet, ImageBackground } from 'react-native'
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable'
 
 const localImg = require("../assets/SpaceWallaper.jpg")
 
-const LoanScreen = ({ userToken, takeOutLoan, wentWrong, userData, setUserData }) => {
+const LoanScreen = ({ userToken, takeOutLoan, wentWrong}) => {
     const [loan, setLoan] = useState([])
+
     const navigation = useNavigation()
     useEffect(() => {
-        console.log("loan", userData);
         const retriveLoan = async () => {
             const data = await fetch(`https://api.spacetraders.io/types/loans?token=${userToken}`)
             data.json().then((data) => setLoan(data.loans))
