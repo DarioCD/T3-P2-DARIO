@@ -7,7 +7,6 @@ const localImg = require("../assets/SpaceWallaper.jpg")
 const HomeScreen = ({ userToken, userData, setUserData }) => {
     useFocusEffect(
         useCallback(() => {
-            console.log(userData);
             fetch(`https://api.spacetraders.io/my/account?token=${userToken}`)
                 .then((res) => res.json())
                 .then((data) => {

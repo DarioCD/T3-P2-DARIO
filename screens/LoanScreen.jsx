@@ -5,7 +5,7 @@ import Pressable from 'react-native/Libraries/Components/Pressable/Pressable'
 
 const localImg = require("../assets/SpaceWallaper.jpg")
 
-const LoanScreen = ({ userToken, takeOutLoan, wentWrong}) => {
+const LoanScreen = ({ userToken, takeOutLoan, wentWrong }) => {
     const [loan, setLoan] = useState([])
 
     const navigation = useNavigation()
@@ -25,7 +25,7 @@ const LoanScreen = ({ userToken, takeOutLoan, wentWrong}) => {
                     <Text style={styles.text}>Rate: {loan[0].rate} %</Text>
                     <Text style={styles.text}>Term: {loan[0].termInDays} days</Text>
                     <Text style={styles.text}>Type: {loan[0].type}</Text>
-                    <Pressable style={styles.presabeTakeOut} onPress={() => { takeOutLoan(userToken); navigation.navigate("Home") }}>
+                    <Pressable style={styles.presabeTakeOut} onPress={() => { takeOutLoan(userToken); setTimeout(() => { navigation.navigate("Home") }, 1000); }}>
                         <Text style={styles.btnTakeOut}>Take out</Text>
                     </Pressable>
                     {wentWrong && window.alert("Only one loan allowed at a time")}
