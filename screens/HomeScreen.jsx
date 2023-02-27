@@ -38,7 +38,7 @@ const HomeScreen = ({ userToken, userData, setUserData }) => {
             <View style={styles.shipStructureContainer}>
                 <View style={styles.itemsContainer}>
                     <Image style={styles.imgContainer}
-                        source={require("../assets/Structure.png")} />
+                        source={require("../assets/structure.png")} />
                     <Text style={styles.textConatiner}>{userData.structureCount} Structures</Text>
                 </View>
             </View>
